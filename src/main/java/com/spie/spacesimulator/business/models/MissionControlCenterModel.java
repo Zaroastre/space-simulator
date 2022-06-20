@@ -1,4 +1,4 @@
-package com.spie.spacesimulator.services.models;
+package com.spie.spacesimulator.business.models;
 
 import java.util.HashSet;
 import java.util.Set;

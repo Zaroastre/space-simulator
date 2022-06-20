@@ -1,17 +1,18 @@
 package com.spie.spacesimulator;
 
-import java.util.HashSet;
 import java.util.Locale;
-import java.util.Set;
 import java.util.UUID;
+import java.util.logging.LogManager;
+import java.util.logging.Logger;
 
-import com.spie.spacesimulator.infrastructure.features.MissionControlCenterHandler;
-import com.spie.spacesimulator.infrastructure.features.SatelliteHandler;
-import com.spie.spacesimulator.interfaces.api.SatelliteProvider;
+import com.spie.spacesimulator.business.factories.MissionControlCenterFactory;
+import com.spie.spacesimulator.business.factories.ObservationSatelliteFactory;
+import com.spie.spacesimulator.business.factories.SatelliteFactory;
+import com.spie.spacesimulator.business.factories.TelecomSatelliteFactory;
+import com.spie.spacesimulator.infrastructure.entities.SpaceVehicule;
 import com.spie.spacesimulator.interfaces.api.UserInterface;
 import com.spie.spacesimulator.interfaces.cli.CommandLineInterface;
 import com.spie.spacesimulator.interfaces.gui.SwingGuiInterface;
-import com.spie.spacesimulator.interfaces.mappers.MissionControlCenterMapper;
 
 /**
  * Class that's the entry point of the application.
@@ -23,6 +24,8 @@ import com.spie.spacesimulator.interfaces.mappers.MissionControlCenterMapper;
  * @version 1.0.0
  */
 public class SpaceSimulatorApplication {
+
+    Runtime runtime =Runtime.getRuntime();
 
     /**
      * The entry point of the application.
@@ -37,7 +40,7 @@ public class SpaceSimulatorApplication {
         userInterfaces[1] = new SwingGuiInterface();
 
         for (UserInterface userInterface : userInterfaces) {
-            userInterface.start();
+            // userInterface.start();
         }
 
         final Location toulouse = new Location(Locale.FRANCE, "Toulouse");
@@ -45,7 +48,16 @@ public class SpaceSimulatorApplication {
         final MissionControlCenter missionControlCenter = new MissionControlCenter(siteIdentifier, toulouse);
         System.out.println(missionControlCenter.getIdentifier());
 
-        
+        MissionControlCenterFactory factory1 = MissionControlCenterFactory.getInstance();
+        System.out.println(factory1);
+        MissionControlCenterFactory factory2 = MissionControlCenterFactory.getInstance();
+        System.out.println(factory2);
+
+        SatelliteFactory observationSatelliteFactory = ObservationSatelliteFactory.getInstance();
+        SatelliteFactory telecomSatelliteFactory = TelecomSatelliteFactory.getInstance();
+
+        SpaceVehicule sateliteObsersavation = observationSatelliteFactory.create("OBS1");
+        SpaceVehicule sateliteTelecom = telecomSatelliteFactory.create("TELCOM1");
 
     }
 }

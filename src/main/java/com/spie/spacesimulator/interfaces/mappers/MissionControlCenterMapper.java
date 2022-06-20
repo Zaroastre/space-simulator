@@ -1,10 +1,10 @@
 package com.spie.spacesimulator.interfaces.mappers;
 
+import com.spie.spacesimulator.business.models.MissionControlCenterModel;
+import com.spie.spacesimulator.business.models.SatelliteModel;
 import com.spie.spacesimulator.infrastructure.entities.SpaceVehicule;
 import com.spie.spacesimulator.interfaces.dto.MissionControlCenterDto;
 import com.spie.spacesimulator.interfaces.dto.SatelliteDto;
-import com.spie.spacesimulator.services.models.MissionControlCenterModel;
-import com.spie.spacesimulator.services.models.SatelliteModel;
 
 public class MissionControlCenterMapper {
     public static MissionControlCenterModel mapDtoToModel(MissionControlCenterDto dto) {

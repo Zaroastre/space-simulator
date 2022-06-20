@@ -1,7 +1,7 @@
 package com.spie.spacesimulator.interfaces.mappers;
 
+import com.spie.spacesimulator.business.models.SatelliteModel;
 import com.spie.spacesimulator.interfaces.dto.SatelliteDto;
-import com.spie.spacesimulator.services.models.SatelliteModel;
 
 public class SatelliteMapper {
     public static SatelliteModel mapDtoToModel(SatelliteDto dto) {

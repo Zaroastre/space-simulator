@@ -1,35 +1,52 @@
 package com.spie.spacesimulator.interfaces.cli;
 
+import java.util.Locale;
 import java.util.Scanner;
 
+import com.spie.spacesimulator.Location;
+import com.spie.spacesimulator.business.services.MccProviderService;
 import com.spie.spacesimulator.infrastructure.entities.OperationalBuilding;
 import com.spie.spacesimulator.infrastructure.entities.SpaceVehicule;
 import com.spie.spacesimulator.interfaces.api.UserInterface;
 
 public class CommandLineInterface implements UserInterface {
 
-    private void displayRemoteMissionControlCenterMenu() {
-        System.out.println("List satellites");
-        System.out.println("Connect to satellite");
-        System.out.println("Leave remote Mission Control Center");
+    private void displaySatelliteMenu(final Scanner keyboard) {
+        System.out.println("1. Turn ON");
+        System.out.println("2. Launch");
+        System.out.println("3. Move");
+        System.out.println("4. Take picture");
+        System.out.println("5. List pictures");
+        System.out.println("6. Delete picture");
+        System.out.println("7. Download picture");
+        System.out.println("8. Apply filter");
+        System.out.println("9. Get active filter");
+        System.out.println("10. Remove filter");
+        System.out.println("11. Land");
+        System.out.println("12. Turn OFF");
     }
 
-    private void displayMissionControlCenterMenu() {
-        System.out.println("Create a new satellite");
-        System.out.println("List local satellites");
-        System.out.println("List remotes Mission Control Centers");
-        System.out.println("Connect to local satellite");
-        System.out.println("Add remote Mission Control Center");
-        System.out.println("Connect to remote Mission Control Center");
+    private void displayRemoteMissionControlCenterMenu(final Scanner keyboard) {
+        System.out.println("1. List satellites");
+        System.out.println("2. Connect to satellite");
+        System.out.println("0. Leave remote Mission Control Center");
     }
 
-    private void displayMainMenu() {
+    private void displayMissionControlCenterMenu(final Scanner keyboard) {
+        System.out.println("1. Create a new satellite");
+        System.out.println("2. List local satellites");
+        System.out.println("3. List remotes Mission Control Centers");
+        System.out.println("4. Connect to local satellite");
+        System.out.println("5. Add remote Mission Control Center");
+        System.out.println("6. Connect to remote Mission Control Center");
+        System.out.println("7. Leave Mission Control Center");
+    }
+
+    private void displayMainMenu(final Scanner keyboard) {
         System.out.println("Welcome on Space Simulator.");
         System.out.println("1. Create a new Mission Control Center");
-        System.out.println("1. Connect to local Mission Control Center");
+        System.out.println("2. Connect to local Mission Control Center");
         System.out.println("0. Quit the simulation.");
-
-        Scanner keyboard = new Scanner(System.in);
         boolean isApplicationRunning = true;
         do {
             String userChoice = keyboard.nextLine();
@@ -39,8 +56,12 @@ public class CommandLineInterface implements UserInterface {
                     break;
                 case "1":
                     System.out.println("Must call MCC Factory...");
+                    MccProviderService service = new MccProviderService();
+                    service.create("MCC1", new Location(Locale.FRANCE, "Toulouse"));
                     break;
                 case "2":
+                    this.displayMissionControlCenterMenu(keyboard);
+
                     System.out.println("Must call Satellite Factory...");
                     break;
                 default:
@@ -55,7 +76,8 @@ public class CommandLineInterface implements UserInterface {
 
     @Override
     public void start() {
-        this.displayMainMenu();
+        Scanner keyboard = new Scanner(System.in);
+        this.displayMainMenu(keyboard);
     }
 
     @Override

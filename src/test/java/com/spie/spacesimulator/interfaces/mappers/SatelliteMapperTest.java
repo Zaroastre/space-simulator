@@ -7,9 +7,9 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.spie.spacesimulator.business.models.SatelliteModel;
 import com.spie.spacesimulator.infrastructure.enumerations.SatelliteType;
 import com.spie.spacesimulator.interfaces.dto.SatelliteDto;
-import com.spie.spacesimulator.services.models.SatelliteModel;
 
 public class SatelliteMapperTest {
 

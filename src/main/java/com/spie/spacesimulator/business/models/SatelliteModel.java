@@ -1,4 +1,4 @@
-package com.spie.spacesimulator.services.models;
+package com.spie.spacesimulator.business.models;
 
 import com.spie.spacesimulator.infrastructure.entities.SpaceVehicule;
 import com.spie.spacesimulator.infrastructure.enumerations.SatelliteType;
